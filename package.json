@@ -1,0 +1,14 @@
+{
+	"name": "stamper",
+	"version": "1.0.0",
+	"main": "sayHello.js",
+	"scripts": {
+		"start": "live-server --port=3000 --watch=index.html,index.js --ignore=node_modules --no-browser"
+	},
+	"author": "",
+	"license": "ISC",
+	"description": "",
+	"devDependencies": {
+		"live-server": "^1.2.2"
+	}
+}
