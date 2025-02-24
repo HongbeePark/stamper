@@ -9,31 +9,65 @@ let Engine = Matter.Engine,
 
 let shooter;
 let balls = [];
-const numBalls = 20;
 let walls = [];
 const CANVAS_WIDTH = 800;
 const CANVAS_HEIGHT = 600;
 const WALL_THICKNESS = 10;
 
-const colors = [
-	[48, 25, 52], // 301934 - Dark Indigo
-	[75, 0, 130], // 4B0082 - True Indigo
-	[90, 33, 141], // 5A218D - Deep Indigo
-	[102, 51, 153], // 663399 - Rebecca Purple
-	[110, 44, 142], // 6E2C8E - Rich Indigo
-	[120, 81, 169], // 7851A9 - Soft Indigo
-	[130, 92, 180], // 825CB4 - Lighter Indigo
-	[138, 88, 174], // 8A58AE - Medium Indigo
-	[148, 112, 195], // 9470C3 - Lavender Indigo
-	[159, 133, 212], // 9F85D4 - Pale Indigo
-	[172, 150, 221], // AC96DD - Soft Lavender Indigo
-	[190, 170, 235], // BEAAEB - Light Indigo
-];
+const size = 7;
+
+const colorOptions = {
+	vibrant: [
+		[255, 0, 0], // Vivid Red
+		[255, 127, 0], // Vivid Orange
+		[255, 255, 0], // Vivid Yellow
+		[127, 255, 0], // Vivid Lime Green
+		[0, 255, 0], // Vivid Green
+		[0, 255, 127], // Vivid Spring Green
+		[0, 255, 255], // Vivid Cyan
+		[0, 127, 255], // Vivid Azure
+		[0, 0, 255], // Vivid Blue
+		[127, 0, 255], // Vivid Violet
+		[255, 0, 255], // Vivid Magenta
+		[255, 0, 127], // Vivid Rose
+	],
+	pastelle: [
+		[255, 179, 186], // Light Pink
+		[255, 223, 186], // Peach
+		[255, 255, 186], // Light Yellow
+		[186, 255, 201], // Mint Green
+		[186, 225, 255], // Light Blue
+		[201, 186, 255], // Lavender
+		[255, 204, 229], // Light Rose
+		[204, 255, 229], // Pastel Teal
+		[229, 204, 255], // Lilac
+		[255, 229, 204], // Cream
+		[204, 229, 255], // Soft Sky
+		[255, 204, 204], // Soft Coral
+	],
+	monochrome: [
+		[0, 0, 0], // Black
+		[25, 25, 25], // Very Dark Gray
+		[50, 50, 50], // Dark Gray
+		[75, 75, 75], // Deep Gray
+		[100, 100, 100], // Medium Dark Gray
+		[125, 125, 125], // Medium Gray
+		[150, 150, 150], // Soft Gray
+		[175, 175, 175], // Light Gray
+		[200, 200, 200], // Pale Gray
+		[225, 225, 225], // Very Light Gray
+		[240, 240, 240], // Almost White
+		[255, 255, 255], // White
+	],
+};
+
+let colors = colorOptions['vibrant'];
 
 let buffer;
 
 function setup() {
-	createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
+	let canvas = createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
+	canvas.parent('canvasContainer');
 	buffer = createGraphics(CANVAS_WIDTH, CANVAS_HEIGHT);
 	engine = Engine.create();
 	world = engine.world;
@@ -41,11 +75,11 @@ function setup() {
 	engine.world.gravity.x = 0;
 
 	// Initialize shooter and balls
-	shooter = new Ball(CANVAS_WIDTH / 8, CANVAS_HEIGHT / 2, 20, true);
-	const size = 5;
+	shooter = new Ball(CANVAS_WIDTH / 8, CANVAS_HEIGHT / 2, 30, true);
+
 	const scale = 40;
 	const positions = calculateDotPositions(size, scale);
-	for (let i = 0; i < numBalls; i++) {
+	for (let i = 0; i < positions.length; i++) {
 		const pos = positions[i];
 		balls.push(
 			new Ball(
@@ -103,6 +137,18 @@ function draw() {
 }
 
 function mousePressed() {
+	// if the click is within the canvas, handle the press
+	if (
+		mouseX > 0 &&
+		mouseX < CANVAS_WIDTH &&
+		mouseY > 0 &&
+		mouseY < CANVAS_HEIGHT
+	) {
+		handlePress();
+	}
+}
+
+function handlePress() {
 	const angle = atan2(
 		mouseY - shooter.body.position.y,
 		mouseX - shooter.body.position.x
@@ -118,7 +164,7 @@ class Ball {
 			restitution: 0.8,
 			friction: 0,
 			frictionAir: 0,
-			density: isShooter ? 0.5 : 1.0,
+			density: 0.2,
 			label: isShooter ? 'shooter' : 'ball',
 			bounce: 1,
 		};
@@ -220,4 +266,46 @@ function calculateDotPositions(size, scale) {
 	return positions.map(function (pos) {
 		return { x: pos.x - centerX, y: pos.y - centerY };
 	});
+}
+
+function getStarted() {
+	const paletteContainer = document.getElementById('paletteContainer');
+	if (paletteContainer) {
+		paletteContainer.scrollIntoView({ behavior: 'smooth' });
+	}
+}
+
+function beginDrawing() {
+	const drawingContainer = document.getElementById('drawingContainer');
+	if (drawingContainer) {
+		drawingContainer.scrollIntoView({ behavior: 'smooth' });
+	}
+}
+
+function clearCanvas() {
+	try {
+		buffer.clear(); // Clears the buffer
+		background(255); // Clears the main canvas
+		redraw(); // Forces p5 to redraw
+	} catch (e) {
+		console.error(e);
+	}
+}
+
+function download() {
+	saveCanvas('paint-splatter', 'png');
+}
+
+function changePalette(palette) {
+	colors = colorOptions[palette];
+
+	const images = document.querySelectorAll('.palette-image');
+	for (let image of images) {
+		image.classList.remove('selected');
+	}
+	const selectedImage = document.getElementById(palette);
+	selectedImage.classList.add('selected');
+	clearCanvas();
+	balls = [];
+	setup();
 }

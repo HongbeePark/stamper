@@ -1,9 +1,113 @@
 body {
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+	background: #f0f0f0;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+#entryContainer {
+	height: 100vh;
+	position: relative;
+}
+
+#getStartedButton {
+	position: absolute;
+	bottom: 16px;
+	left: 50%;
+	transform: translateX(-50%);
+	background: transparent;
+	outline: none;
+	color: #fff;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+	border: none;
+	cursor: pointer;
+	animation: bounce 2s infinite;
+}
+
+/* add a bouncing button animation using keyframes */
+@keyframes bounce {
+	0%,
+	20%,
+	50%,
+	80%,
+	100% {
+		transform: translateY(0);
+	}
+	40% {
+		transform: translateY(-20px);
+	}
+	60% {
+		transform: translateY(-10px);
+	}
+}
+
+#entryImage {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+#drawingContainer {
 	height: 100vh;
-	overflow: hidden;
-	background: #f0f0f0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#exportContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 16px;
+	padding: 16px;
+}
+
+#exportContainer button {
+	border: 1px solid grey;
+	padding: 8px 16px;
+	background: #fff;
+	border-radius: 8px;
+}
+
+#paletteContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 16px;
+	height: 100vh;
+	position: relative;
+}
+
+#paletteContainer img {
+	width: 300px;
+	cursor: pointer;
+	object-fit: cover;
+	transition: transform 0.3s ease-in-out;
+}
+
+#paletteContainer img.selected {
+	border: 2px solid #000000;
+}
+
+#paletteContainer img:hover {
+	transform: scale(1.1);
+}
+
+#beginDrawingButton {
+	position: absolute;
+	bottom: 16px;
+	left: 50%;
+	transform: translateX(-50%);
+	background: transparent;
+	outline: none;
+	color: #000000;
+	display: flex;
+	flex-direction: column;
+	border: none;
+	cursor: pointer;
+	animation: bounce 2s infinite;
 }

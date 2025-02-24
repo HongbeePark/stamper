@@ -12,5 +12,73 @@
 		></script>
 		<script src="index.js" type="text/javascript"></script>
 	</head>
-	<body></body>
+	<body>
+		<div id="entryContainer">
+			<image id="entryImage" src="./assets/entry.png" alt="entry" />
+			<button id="getStartedButton" onclick="getStarted()">
+				<em>Get Started</em
+				><svg
+					xmlns="http://www.w3.org/2000/svg"
+					fill="none"
+					viewBox="0 0 24 24"
+					stroke-width="1.5"
+					stroke="currentColor"
+					class="size-6"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						d="m19.5 8.25-7.5 7.5-7.5-7.5"
+					/>
+				</svg>
+			</button>
+		</div>
+		<div id="paletteContainer">
+			<img
+				class="selected palette-image"
+				onclick="changePalette(`vibrant`)"
+				src="./assets/image_vivid.png"
+				alt="monochrome"
+				id="vibrant"
+			/>
+			<img
+				onclick="changePalette(`pastelle`)"
+				src="./assets/image_pastel.png"
+				alt="monochrome"
+				class="palette-image"
+				id="pastelle"
+			/>
+			<img
+				onclick="changePalette(`monochrome`)"
+				src="./assets/image_mono.png"
+				alt="monochrome"
+				class="palette-image"
+				id="monochrome"
+			/>
+			<button id="beginDrawingButton" onclick="beginDrawing()">
+				<em>Begin Drawing</em
+				><svg
+					xmlns="http://www.w3.org/2000/svg"
+					fill="none"
+					viewBox="0 0 24 24"
+					stroke-width="1.5"
+					stroke="currentColor"
+					class="size-6"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						d="m19.5 8.25-7.5 7.5-7.5-7.5"
+					/>
+				</svg>
+			</button>
+		</div>
+		<div id="drawingContainer">
+			<div id="canvasContainer"></div>
+			<div id="exportContainer">
+				<button onclick="clearCanvas()">Clear</button>
+				<button onclick="download()">Download</button>
+			</div>
+		</div>
+	</body>
 </html>
