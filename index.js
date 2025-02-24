@@ -293,7 +293,8 @@ function clearCanvas() {
 }
 
 function download() {
-	saveCanvas('paint-splatter', 'png');
+	// save the buffer, not the canvas
+	buffer.save('drawing.png');
 }
 
 function changePalette(palette) {
