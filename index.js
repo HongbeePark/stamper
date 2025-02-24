@@ -10,7 +10,7 @@ let Engine = Matter.Engine,
 let shooter;
 let balls = [];
 let walls = [];
-const CANVAS_WIDTH = 800;
+const CANVAS_WIDTH = 1000;
 const CANVAS_HEIGHT = 600;
 const WALL_THICKNESS = 10;
 
