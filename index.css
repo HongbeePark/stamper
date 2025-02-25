@@ -8,8 +8,16 @@ body {
 }
 
 #entryContainer {
-	height: 100vh;
 	position: relative;
+	background-image: url('./assets/entry.png');
+	background-size: cover;
+	background-position: center;
+	height: 110vh;
+}
+
+#howToContainer img {
+	width: 100%;
+	object-fit: contain;
 }
 
 #getStartedButton {
@@ -25,8 +33,12 @@ body {
 	border: none;
 	cursor: pointer;
 	animation: bounce 2s infinite;
+	font-size: 24px;
 }
 
+#getStartedButton svg {
+	height: 32px;
+}
 /* add a bouncing button animation using keyframes */
 @keyframes bounce {
 	0%,
@@ -62,15 +74,24 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	gap: 16px;
-	padding: 16px;
+	gap: 24px;
+	padding: 32px;
 }
 
 #exportContainer button {
 	border: 1px solid grey;
-	padding: 8px 16px;
+	padding: 24px 48px;
 	background: #fff;
 	border-radius: 8px;
+	font-size: 20px;
+	cursor: pointer;
+	font-weight: bold;
+	color: transparent; /* Removes the fill */
+	-webkit-text-stroke: 1px black; /* Outline effect */
+}
+
+#exportContainer button:hover {
+	background: #f0f0f0;
 }
 
 #paletteContainer {
@@ -80,21 +101,53 @@ body {
 	gap: 16px;
 	height: 100vh;
 	position: relative;
+	background-image: url('./assets/page_choosepalette.png');
+	background-size: cover;
+	background-position: center;
 }
 
 #paletteContainer img {
-	width: 300px;
+	width: 400px;
 	cursor: pointer;
 	object-fit: cover;
 	transition: transform 0.3s ease-in-out;
+	margin-top: 72px;
 }
 
-#paletteContainer img.selected {
-	border: 2px solid #000000;
+#paletteContainer img:nth-child(1) {
+	transform: rotate(-6deg) translateX(150px);
 }
 
-#paletteContainer img:hover {
-	transform: scale(1.1);
+#paletteContainer img:nth-child(2) {
+	transform: rotate(6deg);
+}
+
+#paletteContainer img:nth-child(3) {
+	transform: rotate(-6deg) translateX(-150px);
+}
+
+#paletteContainer img:nth-child(1):hover {
+	transform: rotate(-6deg) translateX(150px) scale(1.2);
+}
+
+#paletteContainer img:nth-child(2):hover {
+	transform: rotate(6deg) scale(1.2);
+}
+
+#paletteContainer img:nth-child(3):hover {
+	transform: rotate(-6deg) translateX(-150px) scale(1.2);
+}
+
+#paletteContainer img:nth-child(1).selected {
+	transform: rotate(-6deg) translateX(150px) scale(1.2);
+}
+
+#paletteContainer img:nth-child(2).selected {
+	transform: rotate(6deg) scale(1.2);
+}
+
+#paletteContainer img:nth-child(3).selected {
+	transform: rotate(-6deg) translateX(-150px) scale(1.2);
 }
 
 #beginDrawingButton {
@@ -109,5 +162,10 @@ body {
 	flex-direction: column;
 	border: none;
 	cursor: pointer;
+	font-size: 24px;
 	animation: bounce 2s infinite;
+}
+
+#beginDrawingButton svg {
+	height: 32px;
 }

@@ -269,9 +269,9 @@ function calculateDotPositions(size, scale) {
 }
 
 function getStarted() {
-	const paletteContainer = document.getElementById('paletteContainer');
-	if (paletteContainer) {
-		paletteContainer.scrollIntoView({ behavior: 'smooth' });
+	const howToContainer = document.getElementById('howToContainer');
+	if (howToContainer) {
+		howToContainer.scrollIntoView({ behavior: 'smooth' });
 	}
 }
 
