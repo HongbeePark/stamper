@@ -14,23 +14,12 @@
 	</head>
 	<body>
 		<div id="entryContainer">
-			<button id="getStartedButton" onclick="getStarted()">
-				<em>Get Started</em
-				><svg
-					xmlns="http://www.w3.org/2000/svg"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke-width="1.5"
-					stroke="currentColor"
-					class="size-6"
-				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						d="m19.5 8.25-7.5 7.5-7.5-7.5"
-					/>
-				</svg>
-			</button>
+			<img
+				id="getStartedButton"
+				onclick="getStarted()"
+				src="./assets/button_getStarted.png"
+				alt="entry"
+			/>
 		</div>
 		<div id="howToContainer">
 			<image id="howTo" src="./assets/page_howto.png" alt="entry" />
@@ -57,23 +46,6 @@
 				class="palette-image"
 				id="monochrome"
 			/>
-			<button id="beginDrawingButton" onclick="beginDrawing()">
-				<em>Begin Drawing</em
-				><svg
-					xmlns="http://www.w3.org/2000/svg"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke-width="1.5"
-					stroke="currentColor"
-					class="size-6"
-				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						d="m19.5 8.25-7.5 7.5-7.5-7.5"
-					/>
-				</svg>
-			</button>
 		</div>
 		<div id="drawingContainer">
 			<div id="canvasContainer"></div>
@@ -82,5 +54,6 @@
 				<button onclick="download()">Download</button>
 			</div>
 		</div>
+		<img id="halfLogo" src="./assets/logo_half.png" alt="logo" />
 	</body>
 </html>

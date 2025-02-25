@@ -12,7 +12,7 @@ body {
 	background-image: url('./assets/entry.png');
 	background-size: cover;
 	background-position: center;
-	height: 110vh;
+	height: 115vh;
 }
 
 #howToContainer img {
@@ -21,19 +21,13 @@ body {
 }
 
 #getStartedButton {
-	position: absolute;
-	bottom: 16px;
-	left: 50%;
-	transform: translateX(-50%);
-	background: transparent;
-	outline: none;
-	color: #fff;
-	display: flex;
-	flex-direction: column;
-	border: none;
 	cursor: pointer;
 	animation: bounce 2s infinite;
-	font-size: 24px;
+	width: 120px;
+	position: absolute;
+	left: 50%;
+	bottom: 16px;
+	transform: translateX(-50%);
 }
 
 #getStartedButton svg {
@@ -140,14 +134,17 @@ body {
 
 #paletteContainer img:nth-child(1).selected {
 	transform: rotate(-6deg) translateX(150px) scale(1.2);
+	z-index: 5;
 }
 
 #paletteContainer img:nth-child(2).selected {
 	transform: rotate(6deg) scale(1.2);
+	z-index: 5;
 }
 
 #paletteContainer img:nth-child(3).selected {
 	transform: rotate(-6deg) translateX(-150px) scale(1.2);
+	z-index: 5;
 }
 
 #beginDrawingButton {
@@ -168,4 +165,9 @@ body {
 
 #beginDrawingButton svg {
 	height: 32px;
+}
+
+#halfLogo {
+	width: 100%;
+	object-fit: contain;
 }
